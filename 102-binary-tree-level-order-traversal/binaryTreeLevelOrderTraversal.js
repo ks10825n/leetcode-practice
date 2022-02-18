@@ -45,6 +45,26 @@ function levelOrder(root) {
   return result;
 };
 
+function levelOrder(root) {
+
+  let queue = [root]
+  const result = [];
+  while (queue.length) {
+    const temp = [];
+    const level = [];
+    for (let i = 0; i < queue.length; i++) {
+      const curr = queue[i];
+      level.push(curr.val);
+      if (curr.left) {
+        temp.push(curr.left, curr.right);
+      }
+    }
+    result.push(level);
+    queue = temp;
+  }
+  return result;
+}
+
 let root;
 let tree;
 
