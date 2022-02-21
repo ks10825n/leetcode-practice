@@ -12,7 +12,6 @@ const rob = (nums) => {
   for (let i = 2; i < nums.length; i++) {
     stash[i] = Math.max(stash[i-1], stash[i-2] + nums[i]);
   }
-  console.log(stash)
   return stash[stash.length - 1]
 }
 
