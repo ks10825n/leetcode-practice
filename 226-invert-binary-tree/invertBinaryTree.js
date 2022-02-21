@@ -2,7 +2,7 @@
  * Given the root of a binary tree, invert the tree, and return its root.
  */
 
-class ListNode {
+class TreeNode {
   constructor(val = 0, left = null, right = null) {
     this.val = val;
     this.left = left;
@@ -13,7 +13,7 @@ class ListNode {
 const treeConstructor = (arr, i = 0, node = null) => {
   if (arr[i] === null) return node;
   while (i < arr.length) {
-    node = new ListNode(arr[i]);
+    node = new TreeNode(arr[i]);
     node.left = treeConstructor(arr, i * 2 + 1);
     node.right = treeConstructor(arr, i * 2 + 2);
     break;
@@ -24,7 +24,7 @@ const treeConstructor = (arr, i = 0, node = null) => {
 const invertTree = (root) => {
   if (!root || (!root.left && !root.right)) return root
 
-  let inverted = new ListNode(root.val);
+  let inverted = new TreeNode(root.val);
   const queue = [root];
   const queueInv = [inverted];
   while (queue.length && queueInv.length) {
@@ -32,12 +32,12 @@ const invertTree = (root) => {
     const inv = queueInv.shift();
 
     if (curr.left) {
-      inv.right = new ListNode(curr.left.val);
+      inv.right = new TreeNode(curr.left.val);
       queue.push(curr.left);
       queueInv.push(inv.right);
     }
     if (curr.right) {
-      inv.left = new ListNode(curr.right.val);
+      inv.left = new TreeNode(curr.right.val);
       queue.push(curr.right);
       queueInv.push(inv.left);
     }
